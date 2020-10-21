@@ -17,8 +17,8 @@ USAGE:
 
 OPTIONS:
     -h, --help                This help message.
-    -d, --detailed 						Display all resource information.
-		-p, --parameters					Show defined resource parameters.
+    -d, --detailed            Display all resource information.
+    -p, --parameters          Show defined resource parameters.
 ARGUMENTS:
     A (puppet) defined type.
 
@@ -69,7 +69,7 @@ resource="$( normalize_resource "$1" )"
 
 if [ $DETAILED -eq 1 ]; then
   # Full Details
-	curl -Gs http://localhost:8080/pdb/query/v4/resources/$resource | jq ' group_by(.certname)[] | {(.[0].certname): .[] }' | jq -s 'add'
+  curl -Gs http://localhost:8080/pdb/query/v4/resources/$resource | jq ' group_by(.certname)[] | {(.[0].certname): .[] }' | jq -s 'add'
 elif [ $PARAMETERS -eq 1 ];then
   # Parameters only
   curl -Gs http://localhost:8080/pdb/query/v4/resources/$resource | jq ' group_by(.certname)[] | {(.[0].certname): [.[] | .parameters]}' | jq -s 'add'
