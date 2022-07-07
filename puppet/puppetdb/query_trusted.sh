@@ -6,4 +6,4 @@ if [ $# -eq 0 ]; then
   exit 64;
 fi;
 
-curl -Gs http://localhost:8080/pdb/query/v4/inventory --data-urlencode "query=[\"extract\", [\"trusted.certname\"], [\"=\", \"trusted.extensions.${1}\", \"${2}\"]]" | jq 
+curl -Gs http://localhost:8080/pdb/query/v4/inventory --data-urlencode "query=[\"extract\", [\"trusted.certname\"], [\"=\", \"trusted.extensions.${1}\", \"${2}\"]]" | jq --raw-output 'sort_by(."trusted.certname") | .[]."trusted.certname"'
