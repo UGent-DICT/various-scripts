@@ -21,5 +21,5 @@ curl -Gs "http://localhost:8080/pdb/query/v4/fact-contents" \
           ((.count * 10000) / $total)
           | floor / 100
         )
-    })'
-
+      })
+    | sort_by(.value)'
