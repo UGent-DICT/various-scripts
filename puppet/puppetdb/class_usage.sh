@@ -14,4 +14,4 @@ normalize_classname() {
 
 class="$( normalize_classname "$1" )"
 
-curl -Gs http://localhost:8080/pdb/query/v4/resources/Class/$class | jq '.[].certname'
+curl -Gs http://localhost:8080/pdb/query/v4/resources/Class/$class | jq -r '.[].certname'
